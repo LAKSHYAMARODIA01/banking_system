@@ -11,21 +11,23 @@ def read_accounts():
     with open(ACCOUNTS_FILE, 'r') as file:
         accounts = {}
         for line in file:
-            account_number, name, password, balance = line.strip().split(',')
+            account_number, name, password, transaction_password, balance = line.strip().split(',')
             accounts[account_number] = {
                 'name': name,
                 'password': password,
+                'transaction_password': transaction_password,
                 'balance': float(balance)
             }
     return accounts
 
-def write_account(account_number, name, password, balance):
+def write_account(account_number, name, password, transaction_password, balance):
     """Writes a new account to the accounts file."""
     with open(ACCOUNTS_FILE, 'a') as file:
-        file.write(f"{account_number},{name},{password},{balance}\n")
+        file.write(f"{account_number},{name},{password},{transaction_password},{balance}\n")
 
 def log_transaction(account_number, transaction_type, amount):
     """Logs a transaction to the transactions file with the current date and time."""
-    with open(TRANSACTIONS_FILE, 'a') as file:
+    transaction_file = f'transactions_{account_number}.txt'
+    with open(transaction_file, 'a') as file:
         date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        file.write(f"{account_number},{transaction_type},{amount},{date}\n")
+        file.write(f"{date}, {transaction_type}, {amount}\n")
