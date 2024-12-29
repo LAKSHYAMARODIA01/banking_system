@@ -1,5 +1,5 @@
 from account_manager import create_account, login
-from transaction_manager import deposit, withdraw
+from transaction_manager import deposit, withdraw, check_balance, view_transaction_history
 from utils import read_accounts
 
 def main():
@@ -20,7 +20,9 @@ def main():
                 while True:
                     print("\n1. Deposit")
                     print("2. Withdraw")
-                    print("3. Logout")
+                    print("3. Check Balance")
+                    print("4. View Transaction History")
+                    print("5. Logout")
                     transaction_choice = input("Enter your choice: ")
                     
                     if transaction_choice == '1':
@@ -28,6 +30,10 @@ def main():
                     elif transaction_choice == '2':
                         withdraw(accounts, account_number)
                     elif transaction_choice == '3':
+                        check_balance(accounts, account_number)
+                    elif transaction_choice == '4':
+                        view_transaction_history(account_number)
+                    elif transaction_choice == '5':
                         print("Logged out successfully.")
                         break
                     else:
