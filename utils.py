@@ -2,11 +2,10 @@ import os
 from datetime import datetime  # Import datetime for logging transaction dates
 
 ACCOUNTS_FILE = 'accounts.txt'
-TRANSACTIONS_FILE = 'transactions.txt'
 
 def read_accounts():
     """Reads account data from the accounts file and returns a dictionary of accounts."""
-    if not os.path.exists(ACCOUNTS_FILE):
+    if not os.path.exists( ACCOUNTS_FILE):
         return {}
     with open(ACCOUNTS_FILE, 'r') as file:
         accounts = {}
