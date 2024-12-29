@@ -1,5 +1,6 @@
 from datetime import datetime
 from utils import log_transaction, read_accounts
+from account_manager import hash_password  # Import hash_password here
 
 def deposit(accounts, account_number):
     amount = float(input("Enter amount to deposit: "))
